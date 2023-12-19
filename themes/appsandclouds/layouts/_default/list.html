@@ -1,0 +1,14 @@
+{{ define "main" }}
+  <h1>{{ .Title }}</h1>
+  
+  <div class="w3-margin" style="color: black;">
+    {{ .Content }}
+</div>
+<div class="w3-margin" style="color: black;">
+  {{ range .Pages }}
+    <h2><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h2>
+    Taca teque
+    {{ .Summary }}
+  {{ end }}
+</div>
+{{ end }}

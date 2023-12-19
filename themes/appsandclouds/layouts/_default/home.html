@@ -1,0 +1,92 @@
+{{ define "main" }}
+  {{ $imagenFondo := resources.Get "images/background.webp"}}
+  {{ $imagenFondo2 := resources.Get "images/background2.webp"}}
+  {{ $imagenFondo3 := resources.Get "images/background3.webp"}}
+  {{ $imagenFondo4 := resources.Get "images/background4.webp"}}
+  {{ $imagenFondo5 := resources.Get "images/background5.webp"}}
+  {{ $imagenFondo6 := resources.Get "images/background6.webp"}}
+  {{ $imagenFondo7 := resources.Get "images/background7.webp"}}  
+  {{ $iAfrica := resources.Get "images/africa.webp"}}
+  {{ $iAsia := resources.Get "images/asia.webp"}}
+  {{ $iAmerica := resources.Get "images/america.webp"}}
+  {{ $iEuropa := resources.Get "images/europa.webp"}}
+  {{ $iMiddleEast := resources.Get "images/middleEast.webp"}}
+  {{ $patron := resources.Get "images/patron.webp"}}
+
+  <div id="carrusel" class="w3-container" style="background-image: url('{{ $imagenFondo.RelPermalink }}'); background-size: cover; background-repeat: no-repeat; height: 450px;"></div>
+  <div style="background-image: url({{$patron.RelPermalink}});padding: 30px 0px 0px 30px; background-size: cover; background-repeat: no-repeat;">
+  <nav class="distribuido">
+      <a href="{{ ($.Site.GetPage "string" "africa").RelPermalink }}" class="w3'margin"><img src="{{$iAfrica.RelPermalink}}" width="90%"/></a>
+      {{/* Hay que pasar el tipo de dato, en este caso string y hay que encabezar en la pagina America.md un tag con name igual a america para que funcione.*/}}
+      <a href="{{ ($.Site.GetPage "string" "america").RelPermalink }}"><img src="{{$iAmerica.RelPermalink}}" width="90%"/></a>
+      <a href="{{ ($.Site.GetPage "string" "asia").RelPermalink }}"><img src="{{$iAsia.RelPermalink}}" width="90%"/></a>
+      <a href="{{ ($.Site.GetPage "string" "europa").RelPermalink }}"><img src="{{$iEuropa.RelPermalink}}" width="90%"/></a>
+      <a href="{{ ($.Site.GetPage "string" "middleEast").RelPermalink }}"><img src="{{$iMiddleEast.RelPermalink}}" width="90%"/></a>
+  </nav>
+</div>
+<div style="background-image: url({{$patron.RelPermalink}}); background-size: cover; background-repeat: no-repeat;" class="w3-container w3-center"><br>
+  <span style="padding: 10px; font-family: 'Baloo 2', sans-serif; font-size: 200%;">{{ i18n "articles"}}</span>
+  <br><br>
+</div>
+{{ $totalPosts := len .Site.RegularPages }}
+<p>Total de posts: {{ $totalPosts }}</p>
+{{ range .Site.AllPages }}
+  <h2><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h2>
+{{ end }}
+<div style="background-image: url({{$patron.RelPermalink}}); background-size: cover; background-repeat: no-repeat;">
+  <div id="articulos">
+
+    {{ range .Pages}}
+    <span class="w3-margin">
+      {{ $imageName := printf "images/%s.jpg" .Title | urlize }}
+      {{ $image := resources.Get (printf "%s" $imageName) }}
+      {{ if $image }}
+        <div id="image-container" class="w3-margin">
+          <a href={{.Permalink}}>
+          <div style="background-image: url('{{ $image.Permalink }}');" class="w3-margin">
+            <div id="text-container">
+              <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+              <span style="color: blue;">{{ .Title }}</span></a>
+              <div style="color: blue;"> -
+              {{$date := .Date}}
+              {{ if and (not $date) .GitInfo }}
+                {{$date = .GitInfo.AuthorDate}}
+              {{- end -}}
+            <time datetime="{{ $date.Format "2006-01-02T15:04:05Z07:00" }}">{{ $date.Format "Monday, Jan 2, 2006."}}</time>
+              </div>
+              </div>
+            </div>
+        </span>
+        </div>
+      {{ end}}
+      </span>
+        {{ end }}
+  </div>
+</div>
+
+<script>
+  const images = [
+      'url(' + '{{$imagenFondo.RelPermalink}}' + ')',
+      'url(' + '{{$imagenFondo2.RelPermalink}}' + ')',
+      'url(' + '{{$imagenFondo3.RelPermalink}}' + ')',
+      'url(' + '{{$imagenFondo4.RelPermalink}}' + ')',
+      'url(' + '{{$imagenFondo5.RelPermalink}}' + ')',
+      'url(' + '{{$imagenFondo6.RelPermalink}}' + ')',
+      'url(' + '{{$imagenFondo7.RelPermalink}}' + ')',
+  ];
+
+  let currentImageIndex = 0;
+  const carousel = document.getElementById('carrusel');
+
+  function changeBackground() {
+      carousel.style.backgroundImage = images[currentImageIndex];
+      currentImageIndex = (currentImageIndex + 1) % images.length;
+  }
+
+  // Cambia la imagen cada 3 segundos (3000 milisegundos)
+  setInterval(changeBackground, 10000);
+
+  // Inicializa la primera imagen
+  changeBackground();
+</script>
+{{ end }}
