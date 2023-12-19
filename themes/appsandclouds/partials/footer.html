@@ -1,0 +1,9 @@
+{{ $patron := resources.Get "images/patron.webp"}}
+
+<footer>
+    <div id="copyright" style="background-image: url({{$patron.RelPermalink}});padding: 30px 0px 0px 30px; background-size: cover; background-repeat: no-repeat; text-align: center;">
+        {{- replace .Site.Params.copyright "{now}" (print "<time class='now' datetime='"  (now.Format "2006-01-02T15:04:05Z07:00") "'>" (dateFormat "2006" now) "</time>")| markdownify | safeHTML }} Last Updated -
+        <time datetime="{{ now.Format "2006-01-02T15:04:05Z07:00" }}">{{ dateFormat "Monday, Jan 2, 2006." now}}</time> <br>
+    Themed using <a href="https://appsandclouds.com">Apps&Clouds</a> by <a href="https://appsandclouds.com">Apps&Clouds</a>
+    </div>
+</footer>
