@@ -1,0 +1,11 @@
+{{ define "main" }}
+  
+  <div class="w3-margin" style="color: #0253e3;">
+    {{ .Content }}
+</div>
+<div class="w3-margin" style="color: #0253e3">
+  {{ range .Pages }}
+    <h2><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h2>
+  {{ end }}
+</div>
+{{ end }}
