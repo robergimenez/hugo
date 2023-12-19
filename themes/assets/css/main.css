@@ -1,0 +1,75 @@
+body {
+    color: white;
+    font-family: 'Baloo 2', sans-serif;
+  }
+  
+  footer {
+    border-top: 1px solid #222;
+    margin-top: 1rem;
+  }
+  footer a {
+    color: aliceblue;
+    text-decoration: none;
+  }
+  
+  a {
+    text-decoration: none;
+  }
+  section {
+    background-color: rgb(42, 46, 46);
+  }
+  .copyright {
+    display: flex; 
+    justify-content: center;
+  }
+  .cuadroPosts {
+    opacity: 0.5;
+    background: rgba(51, 51, 51, 0.5);
+    margin: 10 10 10 10;
+  }
+  
+  #navbar {
+    margin: 0px; padding: 0px;
+    position: relative;
+    text-align: center;
+    width: 100%;
+  }
+  
+  #navbar a {
+    display: inline-block;
+    margin: 12px 15px; padding: 5px 0px;
+    background: #999;
+    background: linear-gradient(#999, #333);
+    color: #FFF;
+    font: 14px 'Palatino Linotype', 'Book Antiqua', Palatino, serif;
+    text-decoration: none;
+    border-radius: 3px;
+    box-shadow: 0px 0px 10px rgba(0,0,0, 0.5) inline;
+    width: 100px;
+  }
+  
+  #navbar a:hover {
+    background: #dcac20;
+    color: white;
+  }
+  
+  .distribuido{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+  }
+  
+  @media screen and (min-width: 600px) {
+    .texto-reducible {
+      font-family: 'Baloo 2', sans-serif;
+      font-size: 28px; /* Tamaño de fuente base para pantallas más grandes */
+    }
+  }
+  
+  @media screen and (max-width: 600px) {
+    /* Ajusta el tamaño de fuente para pantallas más pequeñas (por ejemplo, dispositivos móviles) */
+    .texto-reducible {
+      font-family: 'Baloo 2', sans-serif;
+      font-size: 16px;
+    }
+  }
