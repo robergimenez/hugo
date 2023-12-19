@@ -1,0 +1,54 @@
+baseURL: https://www.mytraveltreasury.com
+languageCode: en-us
+title: My Travel Treasury
+theme: appsandclouds
+contentDir: content/
+params:
+  author: Roberto Gimenez
+  email: "roberto.gimenez@appsandclouds.com" 
+  name: "Roberto Gimenez" 
+  location: "Barcelona"
+  color: "#1f46e5"
+  copyright: "Copyright &copy; 2023 Apps & Clouds.
+    All Rights Reserved."
+  footer:
+  - title: About
+    content: >
+      Tiziana Di Martino loves to travel around the world and share her experiences.
+  - title: Recent Blog Posts
+    recents: content
+    recentCount: 7
+  - title: Contact Us
+    contact: true  
+menu:
+  main: 
+    - identifier: about 
+      name: About 
+      url: /about 
+      weight: 100 
+    - identifier: contact 
+      name: Contact 
+      url: /contact 
+      weight: 200
+languages:
+  en:
+    contentDir: content/en
+    languageCode: en-US
+    languageDirection: ltr
+    languageName: English
+    weight: 100
+  es:
+    contentDir: content/es
+    languageCode: sp
+    languageDirection: ltr
+    languageName: Spanish
+    weight: 200
+  it:
+    contentDir: content/it
+    languageCode: it
+    languageDirection: ltr
+    languageName: Italian
+    weight: 300
+permalinks:
+  europa : "/europa/:title/"
+ignoreFiles: ["!europa"]  
