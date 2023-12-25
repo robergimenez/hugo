@@ -1,0 +1,26 @@
+<nav class="w3-row" style="background-image: url({{$patron.RelPermalink}}); background-size: cover; background-repeat: no-repeat;">
+    <span class="w3-half">
+        <a href="https://www.mytraveltreasury.com">
+            <img src="{{$logo.RelPermalink}}" alt="Logo" width="12%" class="w3-margin"/></a>
+        <span class="texto-reducible">{{ site.Title }}</span>    
+    </span>
+    <span class="w3-half" style="text-align: right;">
+        <!-- Pantallas grandes-->
+        <div class="w3-hide-small">
+            <span class="texto-reducible w3-margin">
+                <a href="{{ .Site.BaseURL }}"><img src="{{$home.RelPermalink}}" width="4%"/>  {{ i18n "home" }}</a></span>
+            <span class="texto-reducible w3-margin">
+                <a href="#"><img src="{{$idcard.RelPermalink}}" width="4%"/>  {{ i18n "about" }}</a></span>
+            <span class="texto-reducible w3-margin">
+                <a href="#"><img src="{{$email.RelPermalink}}" width="4%"/>  {{ i18n "contact" }}</a></span>
+            <div>
+                {{ range .AllTranslations }}
+                {{$imageName := printf "images/idiomas/%s.webp" .Language.LanguageName | urlize }}
+                {{$idioma := resources.Get (printf "%s" $imageName)}}
+                <a href="{{ .Permalink}}"><img src="{{$idioma}}" alt="{{.Language.LanguageName}}"></a>
+                <script>console.log({{$idioma}});
+                console.log({{$imageName}})
+                </script>
+                {{ end }}
+            </div>                
+        </div>
