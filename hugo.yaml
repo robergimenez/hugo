@@ -35,19 +35,19 @@ languages:
     contentDir: content/en
     languageCode: en-US
     languageDirection: ltr
-    languageName: English
+    languageName: english
     weight: 100
   es:
     contentDir: content/es
     languageCode: sp
     languageDirection: ltr
-    languageName: Spanish
+    languageName: spanish
     weight: 200
   it:
     contentDir: content/it
     languageCode: it
     languageDirection: ltr
-    languageName: Italian
+    languageName: italian
     weight: 300
 permalinks:
   europa : "/europa/:title/"
