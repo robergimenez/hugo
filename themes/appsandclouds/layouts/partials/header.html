@@ -20,7 +20,7 @@
                 <a href="#"><img src="{{$email.RelPermalink}}" width="4%"/>  {{ i18n "contact" }}</a></span>
             <div>
                 {{ range .AllTranslations }}
-                {{$imageName := printf "images/idiomas/%s.webp" .Language.LanguageName | urlize }}
+                {{$imageName := printf "images/idiomas/%s.webp" (lower .Language.LanguageName) | urlize }}
                 {{$idioma := resources.Get (printf "%s" $imageName)}}
                 <a href="{{ .Permalink}}"><img src="{{$idioma}}" alt="{{.Language.LanguageName}}"></a>
                 <script>console.log({{$idioma}});
