@@ -1,14 +1,30 @@
 {{ define "main" }}
-  <h1>{{ .Title }}</h1>
-  
-  <div class="w3-margin" style="color: black;">
-    {{ .Content }}
+{{ $cabeceraName := printf "images/cabeceras/%s.webp" (lower .Title) | urlize}}
+{{ $imagen := resources.Get $cabeceraName}}
+{{ $patron := resources.Get "images/patron.webp"}}
+<img src="{{$imagen.RelPermalink}}" width="100%">
+<div style="background-image: url({{$patron.RelPermalink}}); background-size: cover; background-repeat: no-repeat;" class="w3-container w3-center">
+  <h1 class="titulos">{{ .Title}} - {{ i18n "articles"}}</h1>
 </div>
-<div class="w3-margin" style="color: black;">
+<div class="w3-container texto">
   {{ range .Pages }}
-    <h2><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h2>
-    Taca teque
+  <span class="w3-twothird">
+      {{$date := .Date}}
+      {{ if and (not $date) .GitInfo }}
+        {{$date = .GitInfo.AuthorDate}}
+      {{- end -}}
+    <h3><a href="{{ .RelPermalink }}">{{ .LinkTitle }} - <time datetime="{{ $date.Format "2006-01-02T15:04:05Z07:00" }}">{{ $date.Format "Monday, Jan 2, 2006."}}</time></a></h3>
     {{ .Summary }}
-  {{ end }}
+  </span>
+  <span class="w3-third">
+    {{ $imageName := printf "images/portadas/%s.webp" .Title | urlize }}
+    {{ $image := resources.Get (printf "%s" $imageName) }}
+    {{ if $image }}
+      <a href={{.Permalink}}>
+        <div style="background-image: url('{{ $image.Permalink }}')" class="imgCategoria">
+      </a>
+    {{ end }}
+  </span>
+  {{end}}
 </div>
-{{ end }}
+{{end }}
